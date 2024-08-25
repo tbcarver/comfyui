@@ -1,0 +1,1 @@
+Minimal install for ComfyUI
