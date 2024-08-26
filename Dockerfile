@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 RUN git clone --depth 1 https://github.com/comfyanonymous/ComfyUI.git /workspace/ComfyUI
 WORKDIR /workspace/ComfyUI
 RUN pip install --no-cache-dir -r requirements.txt
-EXPOSE 8818
+EXPOSE 8188
 
 # ssh server
 RUN mkdir /var/run/sshd && \
