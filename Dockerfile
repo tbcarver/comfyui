@@ -4,6 +4,7 @@ WORKDIR /workspace
 RUN apt-get update && apt-get install -y \
     git \
     tmux \
+    rclone \
     openssh-server && \
     rm -rf /var/lib/apt/lists/*
 
