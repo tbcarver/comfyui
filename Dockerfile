@@ -14,6 +14,10 @@ WORKDIR /workspace/ComfyUI
 RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8188
 
+# ComfyUI custom nodes
+WORKDIR /workspace/ComfyUI/custom_nodes
+RUN git clone --depth 1 https://github.com/ltdrdata/ComfyUI-Manager.git
+
 # ssh server
 RUN mkdir /var/run/sshd && \
     mkdir -p /root/.ssh && \
