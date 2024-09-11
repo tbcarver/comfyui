@@ -24,7 +24,7 @@ RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git && \
     git clone https://github.com/11cafe/comfyui-workspace-manager.git && \
     git clone https://github.com/crystian/ComfyUI-Crystools.git && \
     git clone https://github.com/city96/ComfyUI-GGUF.git && \
-    git clone https://github.com/city96/ComfyUI-GGUF.git && \
+    git clone https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git && \
     git clone https://github.com/dadoirie/image-gallery-comfyui.git
 
 # ssh server
