@@ -49,4 +49,5 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
+WORKDIR /workspace/ComfyUI
 CMD ["sh", "-c", "python main.py --output-directory /workspace/ComfyUI/output --listen 0.0.0.0 $COMFYUI_ARGS"]
