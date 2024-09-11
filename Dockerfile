@@ -21,6 +21,7 @@ COPY workflows ./my_workflows
 # ComfyUI custom nodes
 WORKDIR /workspace/ComfyUI/custom_nodes
 RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git && \
+    mkdir -p /usr/share/fonts/truetype && \
     git clone https://github.com/11cafe/comfyui-workspace-manager.git && \
     git clone https://github.com/crystian/ComfyUI-Crystools.git && \
     pip install -r ComfyUI-Crystools/requirements.txt && \
