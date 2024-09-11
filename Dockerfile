@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     tmux \
     nano \
     rclone \
+    inotify-tools \
     openssh-server && \
     rm -rf /var/lib/apt/lists/*
 
@@ -15,9 +16,16 @@ WORKDIR /workspace/ComfyUI
 RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8188
 
+COPY workflows ./my_workflows
+
 # ComfyUI custom nodes
 WORKDIR /workspace/ComfyUI/custom_nodes
-RUN git clone --depth 1 https://github.com/ltdrdata/ComfyUI-Manager.git
+RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git && \
+    git clone https://github.com/11cafe/comfyui-workspace-manager.git && \
+    git clone https://github.com/crystian/ComfyUI-Crystools.git && \
+    git clone https://github.com/city96/ComfyUI-GGUF.git && \
+    git clone https://github.com/city96/ComfyUI-GGUF.git && \
+    git clone https://github.com/dadoirie/image-gallery-comfyui.git
 
 # ssh server
 RUN mkdir /var/run/sshd && \
@@ -30,6 +38,12 @@ RUN touch /root/.ssh/authorized_keys && \
     chmod 600 /root/.ssh/authorized_keys && \
     chown root:root /root/.ssh/authorized_keys
 EXPOSE 22
+
+COPY scripts /root/scripts
+RUN chmod -R +x /root/scripts
+
+COPY resources/rclone-sync.service /etc/systemd/system/rclone-sync.service
+RUN systemctl enable rclone-sync.service
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
