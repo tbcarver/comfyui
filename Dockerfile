@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 # ComfyUI
-RUN git clone --depth 1 https://github.com/comfyanonymous/ComfyUI.git /workspace/ComfyUI
+RUN git clone https://github.com/comfyanonymous/ComfyUI.git /workspace/ComfyUI
 WORKDIR /workspace/ComfyUI
 RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8188
