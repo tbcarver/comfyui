@@ -23,7 +23,9 @@ WORKDIR /workspace/ComfyUI/custom_nodes
 RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git && \
     git clone https://github.com/11cafe/comfyui-workspace-manager.git && \
     git clone https://github.com/crystian/ComfyUI-Crystools.git && \
+    pip install -r ComfyUI-Crystools/requirements.txt && \
     git clone https://github.com/city96/ComfyUI-GGUF.git && \
+    pip install -r ComfyUI-GGUF/requirements.txt && \
     git clone https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git && \
     git clone https://github.com/dadoirie/image-gallery-comfyui.git
 
