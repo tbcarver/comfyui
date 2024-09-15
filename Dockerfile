@@ -2,6 +2,7 @@ FROM pytorch/pytorch:2.4.0-cuda12.4-cudnn9-runtime
 
 WORKDIR /workspace
 RUN apt-get update && apt-get install -y \
+    curl \
     git \
     tmux \
     nano \
@@ -28,7 +29,7 @@ RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git && \
     git clone https://github.com/city96/ComfyUI-GGUF.git && \
     pip install -r ComfyUI-GGUF/requirements.txt && \
     git clone https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git && \
-    git clone https://github.com/dadoirie/image-gallery-comfyui.git
+    git clone https://github.com/wogam/image-gallery-comfyui.git
 
 # ssh server
 RUN mkdir /var/run/sshd && \
@@ -44,9 +45,6 @@ EXPOSE 22
 
 COPY scripts /root/scripts
 RUN chmod -R +x /root/scripts
-
-COPY resources/rclone-sync.service /etc/systemd/system/rclone-sync.service
-RUN systemctl enable rclone-sync.service
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
