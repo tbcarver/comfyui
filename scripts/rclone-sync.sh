@@ -16,10 +16,10 @@ fi
 FULL_DEST_DIR="$DEST_DIR/$RANDOM_DIR"
 
 # Initial rclone copy of all files
-rclone copy "$SOURCE_DIR" "gdrive:$FULL_DEST_DIR" --ignore-existing
+rclone copy "$SOURCE_DIR" "gdrive:$FULL_DEST_DIR" --ignore-existing -P
 
 # Loop to continuously watch the directory
 while true; do
     inotifywait -e close_write "$SOURCE_DIR"
-    rclone copy "$SOURCE_DIR" "gdrive:$FULL_DEST_DIR" --ignore-existing
+    rclone copy "$SOURCE_DIR" "gdrive:$FULL_DEST_DIR" --ignore-existing -P
 done
