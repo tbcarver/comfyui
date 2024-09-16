@@ -32,4 +32,4 @@ rm -rf "$TEMP_DIR"
 
 # unet
 curl -L -H "Authorization: Bearer $CIVITAI_TOKEN" "https://civitai.com/api/download/models/782728" -o /workspace/ComfyUI/models/unet/hyper-1.5-5q-k-m.zip
-unzip /workspace/ComfyUI/models/unet/hyper-1.5-5q-k-m.zip -d /workspace/ComfyUI/models/unet/hyper-1.5-5q-k-m.guff && rm /workspace/ComfyUI/models/unet/hyper-1.5-5q-k-m.zip
+unzip /workspace/ComfyUI/models/unet/hyper-1.5-5q-k-m.zip -d /workspace/ComfyUI/models/unet/hyper-1.5-5q-k-m.gguf && rm /workspace/ComfyUI/models/unet/hyper-1.5-5q-k-m.zip
