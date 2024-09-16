@@ -9,6 +9,15 @@ else
     echo "HF_TOKEN is set."
 fi
 
+if [ -z "$CIVITAI_TOKEN" ]; then
+    echo "Civitai API token is not set. Please enter your Civitai token:"
+    read -r token
+    export CIVITAI_TOKEN=$token
+    echo "CIVITAI_TOKEN has been set."
+else
+    echo "CIVITAI_TOKEN is set."
+fi
+
 
 # clips
 wget --header="Authorization: Bearer $HF_TOKEN" -O /workspace/ComfyUI/models/clip/clip_l.safetensors "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors?download=true"
@@ -27,6 +36,7 @@ find "$TEMP_DIR" -name "*.pth" -exec cp {} /workspace/ComfyUI/models/vae_approx 
 rm -rf "$TEMP_DIR"
 
 # unet
+curl -L -H "Authorization: Bearer $CIVITAI_TOKEN" "https://civitai.com/api/download/models/782728" -o ~/hyper-1.5-5q-k-m.gguf
 echo "flux gguf https://huggingface.co/city96/FLUX.1-dev-gguf/tree/main"
 wget --header="Authorization: Bearer $HF_TOKEN" -O /workspace/ComfyUI/models/unet/flux1-dev-Q6_K.gguf "https://huggingface.co/city96/FLUX.1-dev-gguf/resolve/main/flux1-dev-Q6_K.gguf?download=true"
 wget --header="Authorization: Bearer $HF_TOKEN" -O /workspace/ComfyUI/models/unet/flux1-dev.safetensors "https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors?download=true"
