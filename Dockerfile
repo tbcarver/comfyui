@@ -3,6 +3,7 @@ FROM pytorch/pytorch:2.4.0-cuda12.4-cudnn9-runtime
 WORKDIR /workspace
 RUN apt-get update && apt-get install -y \
     curl \
+    unzip \
     git \
     tmux \
     nano \
