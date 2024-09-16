@@ -9,6 +9,7 @@ else
     echo "HF_TOKEN is set."
 fi
 
+
 # clips
 wget --header="Authorization: Bearer $HF_TOKEN" -O /workspace/ComfyUI/models/clip/clip_l.safetensors "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors?download=true"
 wget --header="Authorization: Bearer $HF_TOKEN" -O /workspace/ComfyUI/models/clip/t5xxl_fp16.safetensors "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors?download=true"
@@ -18,6 +19,12 @@ wget --header="Authorization: Bearer $HF_TOKEN" -O /workspace/ComfyUI/models/cli
 # vae
 wget --header="Authorization: Bearer $HF_TOKEN" -O /workspace/ComfyUI/models/vae/vae-ft-mse-840000-ema-pruned.safetensors "https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.safetensors?download=true"
 wget --header="Authorization: Bearer $HF_TOKEN" -O /workspace/ComfyUI/models/vae/FLUX1-dev-diffusion_pytorch_model.safetensors  "https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/vae/diffusion_pytorch_model.safetensors?download=true"
+
+# vae approx
+TEMP_DIR=$(mktemp -d)
+git clone --depth 1 https://github.com/madebyollin/taesd.git "$TEMP_DIR"
+find "$TEMP_DIR" -name "*.pth" -exec cp {} /workspace/ComfyUI/models/vae_approx \;
+rm -rf "$TEMP_DIR"
 
 # unet
 echo "flux gguf https://huggingface.co/city96/FLUX.1-dev-gguf/tree/main"
