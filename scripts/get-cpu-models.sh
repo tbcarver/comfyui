@@ -31,4 +31,5 @@ find "$TEMP_DIR" -name "*.pth" -exec cp {} /workspace/ComfyUI/models/vae_approx 
 rm -rf "$TEMP_DIR"
 
 # unet
-curl -L -H "Authorization: Bearer $CIVITAI_TOKEN" "https://civitai.com/api/download/models/782728" -o ~/hyper-1.5-5q-k-m.gguf
+curl -L -H "Authorization: Bearer $CIVITAI_TOKEN" "https://civitai.com/api/download/models/782728" -o /workspace/ComfyUI/models/unet/hyper-1.5-5q-k-m.gguf
+unzip /workspace/ComfyUI/models/unet/hyper-1.5-5q-k-m.zip -d /workspace/ComfyUI/models/unet/hyper-1.5-5q-k-m.guff && rm /workspace/ComfyUI/models/unet/hyper-1.5-5q-k-m.zip
