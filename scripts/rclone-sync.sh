@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SOURCE_DIR="/workspace/ComfyUI/output"
-DEST_DIR="${RCLONE_SYNC_DEST_DIR:-/ComfyUI/output}"
+DEST_DIR="${RCLONE_SYNC_DEST_DIR:-/output}"
 SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 RANDOM_DIR_FILE="$SCRIPT_DIR/random_dir.txt"
 
