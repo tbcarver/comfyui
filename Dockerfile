@@ -18,8 +18,6 @@ WORKDIR /workspace/ComfyUI
 RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8188
 
-COPY workflows ./my_workflows
-
 # ComfyUI custom nodes
 WORKDIR /workspace/ComfyUI/custom_nodes
 RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git && \
@@ -44,6 +42,7 @@ RUN touch /root/.ssh/authorized_keys && \
     chown root:root /root/.ssh/authorized_keys
 EXPOSE 22
 
+COPY workflows /workspace/ComfyUI/my_workflows
 COPY scripts /root/scripts
 RUN chmod -R +x /root/scripts
 
