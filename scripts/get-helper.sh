@@ -35,7 +35,7 @@ function get_zipped {
     local output_path=$2
     local unzip_path=$3
     
-    if [ ! -d "$unzip_path" ]; then
+    if [ ! -f "$unzip_path" ]; then
         curl -L -H "Authorization: Bearer $CIVITAI_TOKEN" "$model_url" -o "$output_path"
         unzip "$output_path" -d "$unzip_path"
         rm "$output_path"
