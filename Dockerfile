@@ -29,8 +29,7 @@ RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git && \
     pip install -r ComfyUI-GGUF/requirements.txt && \
     git clone https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git && \
     git clone https://github.com/tbcarver/image-gallery-comfyui.git && \
-    https://github.com/giriss/comfy-image-saver.git && \
-    pip install -r comfy-image-saver/requirements.txt
+    git clone https://github.com/cubiq/ComfyUI_essentials.git
 
 # ssh server
 RUN mkdir /var/run/sshd && \
