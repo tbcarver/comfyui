@@ -1,4 +1,5 @@
-FROM pytorch/pytorch:2.4.1-cuda12.1-cudnn9-runtime
+ARG PYTORCH_TAG=2.4.1-cuda12.4-cudnn9-runtime
+FROM pytorch/pytorch:${PYTORCH_TAG}
 
 WORKDIR /workspace
 RUN apt-get update && apt-get install -y \
