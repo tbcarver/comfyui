@@ -1,8 +1,8 @@
 # Minimal install for ComfyUI
 
 Includes the following custom nodes:
-* https://github.com/ltdrdata/ComfyUI-Manager
-* https://github.com/11cafe/comfyui-workspace-manager
+* https://github.com/ltdrdata/ComfyUI-Manager  
+* https://github.com/11cafe/comfyui-workspace-manager  
 * https://github.com/crystian/ComfyUI-Crystools
 * https://github.com/city96/ComfyUI-GGUF
 * https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes
@@ -13,7 +13,7 @@ Runs an rclone sync watching the /workspace/ComfyUI/output folder for changes an
 To pass in $RCLONE_SYNC_DEST_DIR as docker run args use ```-e RCLONE_SYNC_DEST_DIR=/output```
 
 ## Setup
-Set up the rclone config:  
+Set up the rclone config, the expected drive name is **gdrive**:  
 ```./scripts/1-setup-rclone.sh```  
 Get models from rclone, get models for flux  
 ```./scripts/2-setup-models.sh```  
@@ -24,8 +24,16 @@ Script **/scripts/get-cpu-models.sh** for getting gguf models that will run a wo
 Script **/scripts/get-flux-models.sh** for getting basic models for flux.  
 
 ## Vast create arguments
--p 2222:22 -p 8188:8188 -e OPEN_BUTTON_PORT=8188 -e RCLONE_SYNC_DEST_DIR=/output  
-```vastai create instance $instanceTypeId --image tbcarver/comfyui:latest-cuda12.4 --env '-p 2222:22 -p 8188:8188 -e OPEN_BUTTON_PORT=8188 -e RCLONE_SYNC_DEST_DIR=/output' --disk $diskSize  --args ''```  
+-p 2222:22 -p 8188:8188 -e OPEN_BUTTON_PORT=8188 
+
+using the vast cli (not the empty args string '' is necessary for the image runtype to be args)  
+```vastai create instance $instanceTypeId --image tbcarver/comfyui:latest-cuda12.4 --env '-p 2222:22 -p 8188:8188 -e OPEN_BUTTON_PORT=8188' --disk $diskSize  --args ''```  
+
+Optional args:
+To set the import sorce from gdrive  
+```-e RCLONE_IMPORT_SOURCE_DIR=/models  ```  
+To set the sync to destination for gdrive  
+```-e RCLONE_SYNC_DEST_DIR=/output  ```  
 
 ### Build and run commands
 docker build --build-arg PYTORCH_TAG=2.4.1-cuda12.1-cudnn9-runtime -t tbcarver/comfyui:latest-cuda12.1 .  
